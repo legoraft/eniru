@@ -40,4 +40,12 @@ mod tests {
 
         assert_eq!(html, parse_bold(paragraph));
     }
+
+    #[test]
+    fn style_parsing() {
+        let paragraph: String = "This is a simple sentence to check if both **bold** and _italic_ text work within Eniru.".to_string();
+        let html: String = "This is a simple sentence to check if both <strong>bold</strong> and <em>italic</em> text work within Eniru.".to_string();
+
+        assert_eq!(html, parse(paragraph));
+    }
 }
