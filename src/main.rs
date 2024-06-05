@@ -1,6 +1,6 @@
 use std::{env, fs};
 
-use parser::{header, paragraph};
+use parser::{header, paragraph, styling};
 
 mod parser;
 
@@ -18,7 +18,7 @@ fn main() {
             let output = header::parse(&paragraph);
             output_html.push(output);
         } else {
-            let output = paragraph;
+            let output = styling::parse(paragraph);
             output_html.push(output.clone());
         }
     }

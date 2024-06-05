@@ -1,6 +1,6 @@
 use regex::Regex;
 
-fn parse(paragraph: String) -> String {
+pub fn parse(paragraph: String) -> String {
     let paragraph: String = parse_bold(paragraph);
     let paragraph: String = parse_italic(paragraph);
 
