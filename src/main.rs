@@ -10,10 +10,10 @@ fn main() {
     let file = fs::read_to_string(&args[1])
         .expect("Couldn't open file!");
 
-    let paragraphs: Vec<String> = paragraph::parse(file);
+    let paragraphs: Vec<paragraph::Paragraph> = paragraph::parse(file);
     let mut output_html: Vec<String> = Vec::new();
 
-    for paragraph in paragraphs {
+/*    for paragraph in paragraphs {
         if paragraph.chars().nth(0).expect("Can't parse paragraph!") == '#' {
             let output = header::parse(&paragraph);
             output_html.push(output);
@@ -25,6 +25,7 @@ fn main() {
         }
     }
 
+*/
     for line in output_html {
         println!("{}", line);
     }
