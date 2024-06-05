@@ -1,6 +1,7 @@
 use std::{env, fs};
 
 mod paragraph;
+mod header;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
