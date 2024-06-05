@@ -10,10 +10,19 @@ mod tests {
     use super::*;
 
     #[test]
-    fn parse_headings() {
+    fn parse_large_heading() {
         let headings: &str = "\
 # This is a single heading";
         let paragraphs: String = "<h1>This is a single heading</h1>".to_string();
+
+        assert_eq!(paragraphs, parse(headings));
+    }
+
+    #[test]
+    fn parse_small_heading() {
+        let headings: &str = "\
+### This is a level 3 heading";
+        let paragraphs: String = "<h3>This is a level 3 heading</h3>".to_string();
 
         assert_eq!(paragraphs, parse(headings));
     }
