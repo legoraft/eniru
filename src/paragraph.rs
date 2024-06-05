@@ -14,7 +14,7 @@ mod tests {
 Hello, world!
 
 These are two seperate paragraphs".to_string();
-        let paragraphs = vec!["Hello, world!", "These are two seperate paragraphs"];
+        let paragraphs: Vec<&str> = vec!["Hello, world!", "These are two seperate paragraphs"];
 
         assert_eq!(paragraphs, parse(file));
     }
