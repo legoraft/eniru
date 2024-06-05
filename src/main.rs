@@ -1,5 +1,7 @@
 use std::{env, fs};
 
+use parser::{header, paragraph};
+
 mod parser;
 
 fn main() {

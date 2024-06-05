@@ -16,6 +16,6 @@ mod tests {
         let paragraph: String = "Hello, this is some text. I also have some **bold** text.".to_string();
         let html: String = "Hello, this is some text. I also have some <b>bold</b> text.".to_string();
 
-        assert_eq!(html, parse(paragraph));
+        assert_eq!(html, parse_bold(paragraph));
     }
 }
