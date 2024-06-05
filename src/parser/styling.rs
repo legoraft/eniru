@@ -8,15 +8,15 @@ pub fn parse(paragraph: String) -> String {
 }
 
 fn parse_bold(text: String) -> String {
-    let bold_re = Regex::new(r"\*\*(?<s>.*)\*\*").unwrap();
-    let text = bold_re.replace_all(&text, "<strong>$s</strong>").to_string();
+    let bold_re = Regex::new(r"\*\*(?<b>.*)\*\*").unwrap();
+    let text = bold_re.replace_all(&text, "<strong>$b</strong>").to_string();
 
     text
 }
 
 fn parse_italic(text: String) -> String {
-    let italic_re = Regex::new(r"_(?<s>.*)_").unwrap();
-    let text = italic_re.replace_all(&text, "<em>$s</em>").to_string();
+    let italic_re = Regex::new(r"_(?<i>.*)_").unwrap();
+    let text = italic_re.replace_all(&text, "<em>$i</em>").to_string();
 
     text
 }
@@ -38,7 +38,7 @@ mod tests {
         let paragraph: String = "Hello, this is some text. I also have some _italic_ text.".to_string();
         let html: String = "Hello, this is some text. I also have some <em>italic</em> text.".to_string();
 
-        assert_eq!(html, parse_bold(paragraph));
+        assert_eq!(html, parse_italic(paragraph));
     }
 
     #[test]
