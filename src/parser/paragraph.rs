@@ -52,4 +52,39 @@ These are two seperate paragraphs".to_string();
 
         assert_eq!(paragraphs, parse(file));
     }
+
+    #[test]
+    fn parse_type_paragraphs() {
+        let file: String = "\
+## Hello, world!
+
+These are two seperate paragraphs
+
+```
+let code = \"possible\";
+```
+
+- lists
+- are
+- cool".to_string();
+        let paragraphs: Vec<Paragraph> = vec![
+            Paragraph{
+                paragraph_type: ParagraphType::Heading,
+                text: "## Hello, world!".to_string(),
+            },
+            Paragraph{
+                paragraph_type: ParagraphType::Text,
+                text: "These are two seperate paragraphs".to_string(),
+            },
+            Paragraph{
+                paragraph_type: ParagraphType::Code,
+                text: "```\nlet code = \"possible\";\n```".to_string(),
+            },
+            Paragraph{
+                paragraph_type: ParagraphType::List,
+                text: "- lists\n- are\n- cool".to_string(),
+            }];
+
+        assert_eq!(paragraphs, parse(file));
+    }
 }
