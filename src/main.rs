@@ -19,7 +19,13 @@ fn main() {
             output_html.push(output);
         } else {
             let output = styling::parse(paragraph);
+            output_html.push("<p>".to_string());
             output_html.push(output.clone());
+            output_html.push("</p>".to_string());
         }
+    }
+
+    for line in output_html {
+        println!("{}", line);
     }
 }
