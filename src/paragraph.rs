@@ -3,3 +3,19 @@ pub fn parse(markdown: String) -> Vec<String> {
 
     paragraphs
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn parse_paragraphs() {
+        let file: String = "\
+Hello, world!
+
+These are two seperate paragraphs".to_string();
+        let paragraphs = vec!["Hello, world!", "These are two seperate paragraphs"];
+
+        assert_eq!(paragraphs, parse(file));
+    }
+}
