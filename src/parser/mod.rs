@@ -23,7 +23,8 @@ impl Paragraph {
         match &text[..2] {
             "``" => Paragraph {paragraph_type: ParagraphType::Code, text},
             "# " | "##" => Paragraph {paragraph_type: ParagraphType::Heading, text},
-            "- " | _ if text.chars().nth(0).unwrap().is_digit(10) && text.chars().nth(1).unwrap() == '.' => Paragraph {paragraph_type: ParagraphType::List, text},
+            "- " => Paragraph {paragraph_type: ParagraphType::List, text},
+            _ if text.chars().nth(0).unwrap().is_digit(10) && text.chars().nth(1).unwrap() == '.' => Paragraph {paragraph_type: ParagraphType::List, text},
             _ => Paragraph {paragraph_type: ParagraphType::Text, text},
         }
     }
@@ -75,7 +76,7 @@ var code = \"impossible\";
                 text: "```\nlet code = \"possible\";\n```".to_string(),
             },
             Paragraph{
-                paragraph_type: ParagraphType::Heading,
+                paragraph_type: ParagraphType::Code,
                 text: "```\nvar code = \"impossible\";\n```".to_string(),
             }];
 
