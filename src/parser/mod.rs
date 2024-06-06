@@ -20,7 +20,7 @@ pub struct Paragraph {
 
 impl Paragraph {
     fn new(text: String) -> Paragraph {
-        match &text[..1] {
+        match &text[..2] {
             "``" => Paragraph {paragraph_type: ParagraphType::Code, text},
             "# " | "##" => Paragraph {paragraph_type: ParagraphType::Heading, text},
             "- " | _ if text.chars().nth(0).unwrap().is_digit(10) && text.chars().nth(1).unwrap() == '.' => Paragraph {paragraph_type: ParagraphType::List, text},
@@ -60,7 +60,72 @@ These are two seperate paragraphs".to_string();
     }
 
     #[test]
-    fn parse_type_paragraphs() {
+    fn code_parsing() {
+        let file: String = "\
+```
+let code = \"possible\";
+```
+
+```
+var code = \"impossible\";
+```".to_string();
+        let code = vec![
+            Paragraph{
+                paragraph_type: ParagraphType::Code,
+                text: "```\nlet code = \"possible\";\n```".to_string(),
+            },
+            Paragraph{
+                paragraph_type: ParagraphType::Heading,
+                text: "```\nvar code = \"impossible\";\n```".to_string(),
+            }];
+
+        assert_eq!(code, parse(file));
+    }
+
+    #[test]
+    fn heading_parsing() {
+        let file: String = "\
+## Hello, world!
+
+# This is a better one".to_string();
+        let headings = vec![
+            Paragraph{
+                paragraph_type: ParagraphType::Heading,
+                text: "## Hello, world!".to_string(),
+            },
+            Paragraph{
+                paragraph_type: ParagraphType::Heading,
+                text: "# This is a better one".to_string(),
+            }];
+
+        assert_eq!(headings, parse(file));
+    }
+
+    #[test]
+    fn list_parsing() {
+        let file: String = "\
+- lists
+- are
+- cool
+
+1. ordered
+2. are
+3. too".to_string();
+        let list = vec![
+        Paragraph{
+            paragraph_type: ParagraphType::List,
+            text: "- lists\n- are\n- cool".to_string(),
+        },
+        Paragraph{
+            paragraph_type: ParagraphType::List,
+            text: "1. ordered\n2. are\n3. too".to_string(),
+        }];
+
+        assert_eq!(list, parse(file));
+    }
+
+    #[test]
+    fn type_paragraph_parsing() {
         let file: String = "\
 ## Hello, world!
 
