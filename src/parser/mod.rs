@@ -19,10 +19,10 @@ pub struct Paragraph {
 
 impl Paragraph {
     fn new(text: String) -> Paragraph {
-        match text.chars().nth(0).unwrap() {
-            '`' => Paragraph {paragraph_type: ParagraphType::Code, text},
-            '#' => Paragraph {paragraph_type: ParagraphType::Heading, text},
-            '-' => Paragraph {paragraph_type: ParagraphType::List, text},
+        match &text[..1] {
+            "``" => Paragraph {paragraph_type: ParagraphType::Code, text},
+            "# " | "##" => Paragraph {paragraph_type: ParagraphType::Heading, text},
+            "- " | _ if text.chars().nth(0).unwrap().is_digit(0-9) && text.chars().nth(1).unwrap() == '.' => Paragraph {paragraph_type: ParagraphType::List, text},
             _ => Paragraph {paragraph_type: ParagraphType::Text, text},
         }
     }
