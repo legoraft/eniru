@@ -1,6 +1,6 @@
 use std::{env, fs};
 
-use parser::{heading, paragraph, ParagraphType};
+use parser::{heading, list, paragraph, ParagraphType};
 
 mod parser;
 
@@ -15,7 +15,8 @@ fn main() {
 
     for paragraph in paragraphs {
         let output = match paragraph.paragraph_type {
-            ParagraphType::Heading => heading::parse(&paragraph.text),
+            ParagraphType::Heading => heading::parse(paragraph.text),
+            ParagraphType::List => list::parse(paragraph.text),
             ParagraphType::Text => paragraph::parse(paragraph.text),
             _ => parser::styling::parse(paragraph.text),
         };

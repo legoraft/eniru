@@ -1,5 +1,6 @@
 pub mod heading;
 pub mod paragraph;
+pub mod list;
 
 pub mod styling;
 
