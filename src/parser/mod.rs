@@ -1,4 +1,4 @@
-pub mod header;
+pub mod heading;
 pub mod paragraph;
 
 pub mod styling;
