@@ -13,21 +13,21 @@ pub fn parse(paragraph: String) -> String {
 }
 
 fn parse_bold(text: String) -> String {
-    let bold_re = Regex::new(r"\*\*(?<b>.*)\*\*").unwrap();
+    let bold_re = Regex::new(r"\*\*(?<b>.*?)\*\*").unwrap();
     let text = bold_re.replace_all(&text, "<strong>$b</strong>").to_string();
 
     text
 }
 
 fn parse_italic(text: String) -> String {
-    let italic_re = Regex::new(r"_(?<i>.*)_").unwrap();
+    let italic_re = Regex::new(r"_(?<i>.*?)_").unwrap();
     let text = italic_re.replace_all(&text, "<em>$i</em>").to_string();
 
     text
 }
 
 fn parse_code(text: String) -> String {
-    let code_re = Regex::new(r"`(?<c>.*)`").unwrap();
+    let code_re = Regex::new(r"`(?<c>.*?)`").unwrap();
     let text = code_re.replace_all(&text, "<code>$c</code>").to_string();
 
     text
