@@ -1,9 +1,13 @@
 use regex::Regex;
 
 pub fn parse(paragraph: String) -> String {
+    let paragraph = paragraph
+        .replace("<", "&lt;")
+        .replace(">", "&gt;");
+
+    let paragraph: String = parse_code(paragraph);
     let paragraph: String = parse_bold(paragraph);
     let paragraph: String = parse_italic(paragraph);
-    let paragraph: String = parse_code(paragraph);
 
     paragraph
 }
