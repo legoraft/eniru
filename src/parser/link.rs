@@ -1,7 +1,7 @@
 use regex::Regex;
 
 pub fn parse(text: String) -> String {
-    let link_re = Regex::new(r"[(?<t>.*)]((?<l>.*))").unwrap();
+    let link_re = Regex::new(r"\[(?<t>.*)\]\((?<l>.*)\)").unwrap();
     let text = link_re.replace_all(&text, "<a href=\"$l\">$t</a>").to_string();
 
     text
