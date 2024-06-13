@@ -34,11 +34,13 @@ impl Paragraph {
     }
 }
 
-pub fn parse(markdown: String) {
-    let re_paragraph = Regex::new(r"(?m)^(#{1,6}.*)|(```[\s\S]*```)|(.*)").unwrap();
+pub fn parse(markdown: String) -> Vec<Paragraph> {
+    let re_paragraph = Regex::new(r"(?m)^(#{1,6}.*)|(```[\s\S]*```)|(.+)").unwrap();
 
     let text: Vec<&str> = re_paragraph.find_iter(&markdown).map(|c| c.as_str()).collect();
-    
+    let paragraphs: Vec<Paragraph> = text.iter().map(|p| Paragraph::new(p.to_string())).collect();
+
+    paragraphs
 }
 
 #[cfg(test)]
