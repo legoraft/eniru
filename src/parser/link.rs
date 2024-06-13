@@ -1,4 +1,6 @@
-fn parse_link(text: String) -> String {
+use regex::Regex;
+
+fn parse(text: String) -> String {
     let link_re = Regex::new(r"[(?<t>.*)]((?<l>.*))").unwrap();
     let text = link_re.replace_all(&text, "<a href=\"$l\">$t</a>").to_string();
 
@@ -7,6 +9,8 @@ fn parse_link(text: String) -> String {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
     fn link_parsing() {
         let paragraph: String = "\
