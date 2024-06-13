@@ -1,6 +1,6 @@
 use std::{env, fs};
 
-use parser::{heading, list, paragraph, ParagraphType};
+use parser::{code, heading, list, paragraph, ParagraphType};
 
 mod parser;
 
@@ -18,6 +18,7 @@ fn main() {
             ParagraphType::Heading => heading::parse(paragraph.text),
             ParagraphType::List => list::parse(paragraph.text),
             ParagraphType::Text => paragraph::parse(paragraph.text),
+            ParagraphType::Code => code::parse(paragraph.text),
             _ => parser::styling::parse(paragraph.text),
         };
         
