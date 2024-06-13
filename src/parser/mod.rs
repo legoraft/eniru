@@ -63,7 +63,7 @@ These are two seperate paragraphs".to_string();
     }
 
     #[test]
-    fn code_parsing() {
+    fn single_line_code_parsing() {
         let file: String = "\
 ```
 let code = \"possible\";
@@ -80,6 +80,32 @@ var code = \"impossible\";
             Paragraph{
                 paragraph_type: ParagraphType::Code,
                 text: "```\nvar code = \"impossible\";\n```".to_string(),
+            }];
+
+        assert_eq!(code, parse(file));
+    }
+
+    #[test]
+    fn multiline_code_parsing() {
+        let file: String = "\
+```
+let code = \"possible\";
+```
+
+```
+code = \"impossible\"
+
+if code == \"impossible\":
+    print(\"Told you!\")
+```".to_string();
+        let code = vec![
+            Paragraph{
+                paragraph_type: ParagraphType::Code,
+                text: "```\nlet code = \"possible\";\n```".to_string(),
+            },
+            Paragraph{
+                paragraph_type: ParagraphType::Code,
+                text: "```\ncode = \"impossible\"\n\nif code == \"impossible\":\n    print(\"Told you!\")\n```".to_string(),
             }];
 
         assert_eq!(code, parse(file));
