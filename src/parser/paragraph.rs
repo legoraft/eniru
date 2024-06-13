@@ -1,7 +1,8 @@
-use super::styling;
+use super::{styling,link};
 
 pub fn parse(text: String) -> String {
     let text = styling::parse(text);
+    let text = link::parse(text);
     let output = format!("<p>{}</p>", text);
 
     output
