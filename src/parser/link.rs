@@ -15,7 +15,7 @@ mod tests {
     fn link_parsing() {
         let paragraph: String = "\
 This is a small paragraph with a simple [link](../homepage.md).".to_string();
-        let paragraphs: String = "<p>This is a small paragraph with a simple <a href=\"../homepage.md\">link</a>".to_string();
+        let paragraphs: String = "This is a small paragraph with a simple <a href=\"../homepage.md\">link</a>.".to_string();
 
         assert_eq!(paragraphs, parse(paragraph));
     }
