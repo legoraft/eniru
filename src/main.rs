@@ -19,7 +19,6 @@ fn main() {
             ParagraphType::List => list::parse(paragraph.text),
             ParagraphType::Text => paragraph::parse(paragraph.text),
             ParagraphType::Code => code::parse(paragraph.text),
-            _ => parser::styling::parse(paragraph.text),
         };
         
         output_html.push(output);
