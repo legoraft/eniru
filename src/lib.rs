@@ -2,7 +2,7 @@ use parser::{code, heading, list, paragraph, ParagraphType};
 
 mod parser;
 
-fn parse(file: String) -> String {
+pub fn parse_markdown(file: String) -> String {
     let paragraphs: Vec<parser::Paragraph> = parser::parse(file);
     let mut output_html: Vec<String> = Vec::new();
     let mut output_string: String = String::new();
