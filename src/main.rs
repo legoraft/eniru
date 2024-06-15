@@ -1,6 +1,6 @@
 use std::{env, ffi::OsString, fs, path::Path};
 
-use eniru::parse_markdown;
+use eniru::{file_generator, parse_markdown};
 
 fn main() {
     let posts = fs::read_dir("./posts").expect("Couldn't find post directory!");
