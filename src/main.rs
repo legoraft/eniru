@@ -7,6 +7,7 @@ fn main() {
 
     let file = fs::read_to_string(&args[1])
         .expect("Couldn't open file!");
-    
+
     let html = parse_markdown(file);
+    println!("{html}");
 }
