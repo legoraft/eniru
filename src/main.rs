@@ -1,6 +1,6 @@
 use std::{env, fs, io::ErrorKind, path::Path};
 
-use eniru::file_generator;
+use eniru::post_generator;
 
 fn main() {
     let args: Vec<String> = env::args().collect();

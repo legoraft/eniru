@@ -1,7 +1,7 @@
 use md_parser::{code, heading, list, paragraph, ParagraphType};
 
 mod md_parser;
-pub mod file_generator;
+pub mod post_generator;
 
 pub fn parse_markdown(file: String) -> String {
     let paragraphs: Vec<md_parser::Paragraph> = md_parser::parse(file);
