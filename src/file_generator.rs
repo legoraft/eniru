@@ -2,7 +2,7 @@ use std::{env::{current_dir, set_current_dir}, fs::{self, ReadDir}, path::{Path,
 
 use crate::parse_markdown;
 
-pub fn generate(posts: ReadDir) {
+pub fn generate(posts: ReadDir, template: String) {
     if !Path::new("./site/posts").exists() {
         fs::create_dir("./site/posts/").expect("Couldn't create posts directory!")
     };
@@ -17,7 +17,8 @@ pub fn generate(posts: ReadDir) {
 
         let path = post.expect("Couldn't get post file path!").path();
         let file = fs::read_to_string(&path).expect("Couldn't read markdown file!");
-        let html = parse_markdown(file);
+        let content = parse_markdown(file);
+        let html = template.replace("{content}", &content);
 
         let filename = path.file_stem().unwrap();
         let output_file = [filename.to_str().unwrap(), ".html"].concat();
