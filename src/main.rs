@@ -14,5 +14,5 @@ fn main() {
         fs::create_dir("./site").expect("Couldn't create site directory!");
     }
 
-    file_generator::generate(posts, posts_template);
+    post_generator::generate(posts, posts_template);
 }
