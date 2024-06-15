@@ -1,9 +1,9 @@
-use parser::{code, heading, list, paragraph, ParagraphType};
+use md_parser::{code, heading, list, paragraph, ParagraphType};
 
-mod parser;
+mod md_parser;
 
 pub fn parse_markdown(file: String) -> String {
-    let paragraphs: Vec<parser::Paragraph> = parser::parse(file);
+    let paragraphs: Vec<md_parser::Paragraph> = md_parser::parse(file);
     let mut output_html: Vec<String> = Vec::new();
     let mut output_string: String = String::new();
 
