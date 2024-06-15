@@ -1,4 +1,4 @@
-use std::{env, fs, io::ErrorKind, path::Path};
+use std::{env, fs, path::Path};
 
 use eniru::post_generator;
 
